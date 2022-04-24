@@ -1,24 +1,22 @@
 <template>
-  <a-config-provider :autoInsertSpaceInButton="false">
-    <h1>childcomp</h1>
-    <div>
-      <p>这是公共子组件</p>
-      <h2>{{ info }}</h2>
-      <h2>{{ time }}</h2>
-      <div
-        :style="{ background: 'rgb(190, 200, 200)', padding: '26px 16px 16px' }"
-      >
-        <a-space>
-          <a-button type="primary" ghost>查询</a-button>
-          <a-button @click="handleAdd('new')" ghost>新增</a-button>
-          <a-button type="dashed" ghost>修改</a-button>
-          <a-button @click="handleDel('del')" type="primary" danger ghost
-            >删除</a-button
-          >
-        </a-space>
-      </div>
+  <h1>childcomp</h1>
+  <div>
+    <p>这是公共子组件</p>
+    <h2>{{ info }}</h2>
+    <h2>{{ time }}</h2>
+    <div
+      :style="{ background: 'rgb(190, 200, 200)', padding: '26px 16px 16px' }"
+    >
+      <a-space>
+        <a-button type="primary" ghost>查询</a-button>
+        <a-button @click="handleAdd('new')" ghost>新增</a-button>
+        <a-button type="dashed" ghost>修改</a-button>
+        <a-button @click="handleDel('del')" type="primary" danger ghost
+          >删除</a-button
+        >
+      </a-space>
     </div>
-  </a-config-provider>
+  </div>
   <div class="table-con">
     <div class="table-one">
       <a-table
@@ -54,6 +52,7 @@ defineProps({
     default: "0分钟",
   },
 });
+
 let $emits = defineEmits(["handleAdd", "handleDel"]);
 
 //定义数据
@@ -111,11 +110,13 @@ const pagination = computed(() => ({
   total: 100,
   current: current.value,
   pageSize: pageSize.value,
-  position: ["bottomCenter", "bottomLeft"],
+  position: ["bottomCenter"],
   hideOnSinglePage: false,
   showSizeChanger: true,
+  showQuickJumper: true,
 }));
 
+// 分页、排序、筛选变化时触发
 const handleTableChange = (pag, filters, sorter) => {
   console.log(pag, filters, sorter);
   run({

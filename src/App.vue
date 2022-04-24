@@ -1,11 +1,28 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/todo">Todo</router-link>
-  </div>
-  <router-view />
+  <a-config-provider :autoInsertSpaceInButton="false" :locale="zh_CN">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link to="/todo">Todo</router-link>
+    </div>
+    <router-view />
+  </a-config-provider>
 </template>
+
+<script>
+import zh_CN from "ant-design-vue/lib/locale-provider/zh_CN";
+// eslint-disable-next-line no-unused-vars
+import moment from "moment";
+import "moment/locale/zh-cn";
+export default {
+  name: "app",
+  data() {
+    return {
+      zh_CN,
+    };
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
