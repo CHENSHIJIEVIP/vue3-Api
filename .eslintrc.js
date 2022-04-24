@@ -17,5 +17,7 @@ module.exports = {
         endOfLine: "auto",
       },
     ],
+
+    "no-unused-vars": "warn",
   },
 };
