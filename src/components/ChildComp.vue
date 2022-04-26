@@ -35,9 +35,13 @@
       </a-table>
     </div>
   </div>
+  <div style="border: 1px solid blue; padding: 30px">
+    <computed-watch></computed-watch>
+  </div>
 </template>
 
 <script setup>
+import ComputedWatch from "./comps/ComputedWatch.vue";
 import { usePagination } from "vue-request";
 import { defineProps, defineEmits, computed } from "vue";
 import axios from "axios";
