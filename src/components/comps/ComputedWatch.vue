@@ -24,10 +24,22 @@
       </p>
     </div>
   </div>
+  <div style="border: 1px solid yellowGreen; margin: 10px">
+    <h3 v-if="loading">正在加载中....</h3>
+    <h3 v-else-if="errorMsg">错误信息：{{ errorMsg }}</h3>
+    <ul v-else>
+      <li>id：{{ data.id }}</li>
+      <li>address：{{ data.address }}</li>
+      <li>distance：{{ data.distance }}</li>
+    </ul>
+    <template v-is="showTrue">sfdsdfsd</template>
+  </div>
 </template>
 
 <script setup>
-import { computed, reactive, ref, toRef, watch, watchEffect } from "vue";
+import { useRequest } from "vue-request";
+// import { useRequest } from "../../hooks/useRequest";
+import { computed, reactive, ref, watch, watchEffect, onMounted } from "vue";
 // let firstName = ref("123");
 // let lastName = ref("456");
 // let fullName1 = firstName.value + "_" + lastName.value;
@@ -52,6 +64,8 @@ const fullName2 = computed({
 });
 
 const fullName3 = ref("");
+
+const showTrue = ref(true);
 watch(
   user,
   ({ firstName, lastName }) => {
@@ -75,6 +89,13 @@ watchEffect(() => {
 // watch---可以监听多个数据
 watch([() => user.firstName, () => user.lastName], (val) => {
   console.log(7777, val);
+});
+
+//发送请求
+const { loading, data, errorMsg } = useRequest("./data/address.json");
+
+onMounted(() => {
+  console.log(useRequest);
 });
 </script>
 
